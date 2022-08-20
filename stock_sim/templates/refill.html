@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <form action="/refill" method="post">
+            <input id="query" autocomplete="off" autofocus class="mx-auto w-auto" name="amount" placeholder="Amount" type="number">
+            <input id="sub" class="btn btn-primary" type="submit" value="Add funds">
+    </form>
+    <!-- <div>&nbsp;</div> -->
+    <!-- <h6 style="color: #FF0000">{{message}}</h6> -->
+{% endblock %}

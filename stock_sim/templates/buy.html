@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy Stocks
+{% endblock %}
+
+{% block main %}
+    <form action="/buy" method="post">
+        <div >
+            <input autocomplete="off" autofocus class="mx-auto w-auto" id="query" name="symbol" placeholder="Symbol" type="text">
+            <input class="mx-auto w-auto" id="shares" name="shares" placeholder="Shares" type="number">
+        </div>
+        <div>&nbsp;</div>
+        <div>
+            <input class="btn btn-primary" id="sub" disabled type="submit" value="Buy">
+        </div>
+    </form>
+    <div>&nbsp;</div>
+    <h6 style="color: #FF0000">{{message}}</h6>
+    <script>
+
+        var quote = document.getElementById("query");
+        var shares = document.getElementById("shares");
+
+        quote.addEventListener("input", check);
+        shares.addEventListener("input", check);
+
+        function check(){
+            if (quote.value && shares.value && parseInt(shares.value) > 0){
+                document.getElementById("sub").disabled = false;
+            } else {
+                document.getElementById("sub").disabled = true;
+            }
+        }
+    </script>
+{% endblock %}

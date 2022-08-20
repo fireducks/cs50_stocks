@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <form action="/quote" method="post">
+            <input id="query" autocomplete="off" autofocus class="mx-auto w-auto" name="symbol" placeholder="Symbol" type="text">
+            <input id="sub" class="btn btn-primary" type="submit" value="Quote">
+    </form>
+    <div>&nbsp;</div>
+    <h6 style="color: #FF0000">{{message}}</h6>
+{% endblock %}
