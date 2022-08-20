@@ -173,25 +173,19 @@ def quote():
     if request.method == "POST":
 
         query = request.form.get("symbol")
-
         quote = lookup(query)
 
         if quote:
             name = quote['name']
             symbol = quote['symbol']
             price = str(quote['price'])
-
             message = "A share of " + name + " (" + symbol + ") costs $" + price + "."
-
             return render_template("quote.html", message=message)
-
         else:
             return render_template("quote.html", message="Stock does not exist.")
-
+        
     else:
         return render_template("quote.html")
-
-    # return apology("TODO")
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -219,19 +213,12 @@ def register():
 
         hash = generate_password_hash(request.form.get("password"))
 
-        # reg_id = int(db.execute("SELECT count(*) FROM users")[0]['count(*)']) + 1
-
         rows = db.execute("INSERT INTO users (username, hash) VALUES (?, ?)",request.form.get("username"), hash)
-
-        # if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
-        #     return apology("invalid username and/or password", 403)
 
         session["user_id"] = int(db.execute("SELECT id FROM users where username=?", request.form.get("username"))[0]['id'])
 
-        # Redirect user to home page
         return redirect("/")
 
-    # User reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("register.html")
 
